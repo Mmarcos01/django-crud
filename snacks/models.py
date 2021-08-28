@@ -1,12 +1,15 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-# Create your models here.
+from django.urls import reverse
 
 class Snack(models.Model):
-    name = models.CharField(max_length=64)
+    title= models.CharField(max_length=64)
     description = models.TextField(default='')
-    owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    purchaser = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     # CASCADE - if you delete the user it'll delete everything under that user
 
-    def __str__(self) -> str:
-        return self.name
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('snack_detail', args=[str(self.id)])

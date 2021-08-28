@@ -1,29 +1,32 @@
 from django.shortcuts import render
 from .models import Snack
+from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 # Create your views here.
 
 
 class SnackListView(ListView):
-    pass
+    template_name = 'snack-list.html'
+    model = Snack
+    context_object_name = 'list_snacks'
+
 class SnackDetailView(DetailView):
-    pass
+    template_name = 'snack-detail.html'
+    model = Snack
+
 class SnackCreateView(CreateView):
-    pass
+    template_name = 'snack-create.html'
+    model = Snack
+    fields = ['title', 'description', 'purchaser']
+    success_url = reverse_lazy('snack_list')
+
 class SnackUpdateView(UpdateView):
-    pass
+    template_name = 'snack-update.html'
+    model = Snack
+    fields = ['title', 'description', 'purchaser']
+
 class SnackDeleteView(DeleteView):
-    pass
+    template_name = 'snack-delete.html'
+    model = Snack
+    success_url = reverse_lazy('snack_list')
 
-
-
-# Create SnackListView that extends appropriate generic view
-# associated url path is an empty string
-# Create SnackDetailView that extends appropriate generic view
-# associated url path is <int:pk>/
-# Create SnackCreateView that extends appropriate generic view
-# associated url path is create/
-# Create SnackUpdateView that extends appropriate generic view
-# associated url path is <int:pk>/update/
-# Create SnackDeleteView that extends appropriate generic view
-# associated url path is <int:pk>/delete/
