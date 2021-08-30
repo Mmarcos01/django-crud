@@ -3,7 +3,7 @@
 {% block content %}
     <h1>Snack List</h1>
 
-    <a href="{% url 'snack_create' %}">+ Add a New Snack</a>
+    <a href="{% url 'snack_create' %}">Add a New Snack</a>
     <ul>
     {% for snack in list_snacks %}
         <li><a href="{% url 'snack_detail' snack.pk %}">{{ snack.title }}</a></li>
